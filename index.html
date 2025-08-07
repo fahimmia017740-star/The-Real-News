@@ -161,6 +161,28 @@
             transform: rotate(30deg);
         }
         
+        /* Font Size Adjuster */
+        .font-size-adjuster {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        .font-size-btn {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            padding: 5px;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+        }
+        
+        .font-size-btn:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+        
         /* Live Visitor Counter */
         .live-counter {
             display: flex;
@@ -385,10 +407,35 @@
             color: var(--light-text);
         }
         
+        .news-actions {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 10px;
+        }
+        
+        .news-action-btn {
+            background: none;
+            border: none;
+            color: var(--light-text);
+            font-size: 14px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            transition: all 0.3s ease;
+        }
+        
+        .news-action-btn:hover {
+            color: var(--primary-color);
+        }
+        
+        .news-action-btn.saved {
+            color: var(--accent-color);
+        }
+        
         /* Ad Section */
         .ad-section {
             background-color: var(--secondary-bg);
-            border: 1px dashed var(--border-color);
             border-radius: 8px;
             padding: 20px;
             text-align: center;
@@ -398,21 +445,19 @@
             flex-direction: column;
             justify-content: center;
             align-items: center;
+            overflow: hidden;
         }
         
-        .ad-iframe {
+        .ad-container {
             width: 100%;
-            height: 90px;
-            border: none;
-            border-radius: 4px;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
         
         .ad-large {
             min-height: 250px;
-        }
-        
-        .ad-large .ad-iframe {
-            height: 250px;
         }
         
         /* Trending Topics Section */
@@ -496,44 +541,6 @@
         @keyframes ticker {
             0% { transform: translateX(100%); }
             100% { transform: translateX(-100%); }
-        }
-        
-        /* Weather Widget */
-        .weather-widget {
-            background-color: var(--secondary-bg);
-            border-radius: 8px;
-            padding: 20px;
-            margin-bottom: 30px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
-        }
-        
-        .weather-info {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-        }
-        
-        .weather-icon {
-            font-size: 36px;
-            color: var(--primary-color);
-        }
-        
-        .weather-details h4 {
-            margin-bottom: 5px;
-        }
-        
-        .weather-details p {
-            color: var(--light-text);
-            font-size: 14px;
-        }
-        
-        .weather-temp {
-            font-size: 32px;
-            font-weight: 700;
-            color: var(--primary-color);
         }
         
         /* Footer */
@@ -622,39 +629,6 @@
         .social-links a:hover {
             background-color: var(--primary-color);
             transform: translateY(-3px);
-        }
-        
-        .github-support {
-            margin-top: 20px;
-            padding: 15px;
-            background-color: rgba(255, 255, 255, 0.1);
-            border-radius: 8px;
-            text-align: center;
-        }
-        
-        .github-support h5 {
-            margin-bottom: 10px;
-            font-size: 16px;
-        }
-        
-        .github-support p {
-            font-size: 14px;
-            color: #ccc;
-            margin-bottom: 10px;
-        }
-        
-        .github-support a {
-            color: white;
-            text-decoration: none;
-            font-weight: 500;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-        }
-        
-        .github-support a:hover {
-            text-decoration: underline;
         }
         
         .copyright {
@@ -765,18 +739,42 @@
             margin: 15px 0;
         }
         
-        .modal-ad {
-            background-color: var(--secondary-bg);
-            border: 1px dashed var(--border-color);
-            border-radius: 8px;
-            padding: 20px;
-            text-align: center;
-            margin: 30px 0;
-            min-height: 250px;
+        .modal-actions {
             display: flex;
-            flex-direction: column;
-            justify-content: center;
+            justify-content: space-between;
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid var(--border-color);
+        }
+        
+        .modal-action-btn {
+            background: none;
+            border: 1px solid var(--border-color);
+            color: var(--text-color);
+            padding: 8px 15px;
+            border-radius: 4px;
+            font-size: 14px;
+            cursor: pointer;
+            display: flex;
             align-items: center;
+            gap: 8px;
+            transition: all 0.3s ease;
+        }
+        
+        .modal-action-btn:hover {
+            background-color: var(--primary-color);
+            color: white;
+            border-color: var(--primary-color);
+        }
+        
+        .modal-action-btn.saved {
+            color: var(--accent-color);
+            border-color: var(--accent-color);
+        }
+        
+        .modal-share {
+            display: flex;
+            gap: 10px;
         }
         
         /* Back to Top Button */
@@ -902,6 +900,106 @@
             white-space: nowrap;
         }
         
+        /* Saved Articles */
+        .saved-articles {
+            position: fixed;
+            right: -350px;
+            top: 0;
+            width: 350px;
+            height: 100%;
+            background-color: var(--background-color);
+            box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+            z-index: 1500;
+            transition: right 0.3s ease;
+            overflow-y: auto;
+            padding: 20px;
+        }
+        
+        .saved-articles.show {
+            right: 0;
+        }
+        
+        .saved-articles-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid var(--border-color);
+        }
+        
+        .saved-articles-title {
+            font-size: 20px;
+            font-weight: 600;
+        }
+        
+        .close-saved {
+            background: none;
+            border: none;
+            font-size: 20px;
+            cursor: pointer;
+            color: var(--light-text);
+        }
+        
+        .saved-article-item {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 20px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid var(--border-color);
+            cursor: pointer;
+        }
+        
+        .saved-article-item img {
+            width: 80px;
+            height: 80px;
+            object-fit: cover;
+            border-radius: 4px;
+        }
+        
+        .saved-article-content {
+            flex: 1;
+        }
+        
+        .saved-article-title {
+            font-weight: 600;
+            margin-bottom: 5px;
+            line-height: 1.3;
+        }
+        
+        .saved-article-meta {
+            font-size: 12px;
+            color: var(--light-text);
+        }
+        
+        .saved-articles-empty {
+            text-align: center;
+            padding: 30px 0;
+            color: var(--light-text);
+        }
+        
+        /* Print Styles */
+        @media print {
+            body {
+                background-color: white;
+                color: black;
+            }
+            
+            header, footer, .ad-section, .modal-actions, .news-actions, .saved-articles, .back-to-top, .notification, .breaking-news, .trending-topics {
+                display: none !important;
+            }
+            
+            .modal-container {
+                box-shadow: none;
+                margin: 0;
+                max-width: 100%;
+            }
+            
+            .modal-header img {
+                max-height: 300px;
+            }
+        }
+        
         /* Responsive Design */
         @media (max-width: 768px) {
             .featured-news {
@@ -939,12 +1037,6 @@
                 margin: 5px;
             }
             
-            .weather-widget {
-                flex-direction: column;
-                gap: 15px;
-                text-align: center;
-            }
-            
             .modal-container {
                 margin: 20px auto;
             }
@@ -963,6 +1055,11 @@
                 width: 40px;
                 height: 40px;
                 font-size: 16px;
+            }
+            
+            .saved-articles {
+                width: 100%;
+                right: -100%;
             }
         }
     </style>
@@ -993,6 +1090,14 @@
                     <input type="text" placeholder="খবর খুঁজুন..." id="searchInput">
                     <div class="search-results" id="searchResults"></div>
                 </div>
+                <div class="font-size-adjuster">
+                    <button class="font-size-btn" id="fontDecrease" title="ফন্ট ছোট করুন">
+                        <i class="fas fa-minus"></i>
+                    </button>
+                    <button class="font-size-btn" id="fontIncrease" title="ফন্ট বড় করুন">
+                        <i class="fas fa-plus"></i>
+                    </button>
+                </div>
                 <div class="live-counter">
                     <span class="pulse"></span>
                     <span id="visitorCount">0</span> অনলাইন
@@ -1003,7 +1108,7 @@
             </div>
         </div>
     </header>
-
+    
     <!-- Breaking News Ticker -->
     <div class="breaking-news">
         <div class="breaking-news-container">
@@ -1018,30 +1123,16 @@
             </div>
         </div>
     </div>
-
+    
     <!-- Main Content -->
     <main>
-        <!-- Weather Widget -->
-        <div class="weather-widget">
-            <div class="weather-info">
-                <div class="weather-icon">
-                    <i class="fas fa-cloud-sun" id="weatherIcon"></i>
-                </div>
-                <div class="weather-details">
-                    <h4 id="weatherLocation">ঢাকা, বাংলাদেশ</h4>
-                    <p id="weatherCondition">আংশিক মেঘলা</p>
-                </div>
-            </div>
-            <div class="weather-temp" id="weatherTemp">28°C</div>
-        </div>
-
         <!-- Featured News Section -->
         <section class="featured-news">
             <div class="main-featured" id="mainFeatured">
                 <img src="https://picsum.photos/seed/news1/800/400.jpg" alt="Featured News">
                 <div class="featured-content">
                     <h2>দেশের সর্ববৃহৎ প্রযুক্তি মেলা শুরু হতে যাচ্ছে</h2>
-                    <p>রাজধানীর বঙ্গবন্ধু আন্তর্জাতিক সম্মেলন কেন্দ্রে আগামীকাল থেকে শুরু হচ্ছে তিন দিনব্যাপী ডিজিটাল বাংলাদেশ মেলা।</p>
+                    <p>রাজধানীর  আন্তর্জাতিক সম্মেলন কেন্দ্রে আগামীকাল থেকে শুরু হচ্ছে তিন দিনব্যাপী ডিজিটাল বাংলাদেশ মেলা।</p>
                     <div class="featured-meta">
                         <span><i class="far fa-clock"></i> ২ ঘন্টা আগে</span>
                         <span><i class="far fa-user"></i> প্রযুক্তি ডেস্ক</span>
@@ -1078,12 +1169,12 @@
                 </div>
             </div>
         </section>
-
+        
         <!-- Ad Section -->
         <div class="ad-section" id="homeAdTop">
-            <iframe class="ad-iframe" id="adTopIframe" srcdoc="<div style='display:flex;justify-content:center;align-items:center;height:100%;color:#999;'>বিজ্ঞাপন লোড হচ্ছে...</div>"></iframe>
+            <div class="ad-container" id="adTopContainer"></div>
         </div>
-
+        
         <!-- Category Tabs -->
         <div class="category-tabs">
             <div class="category-tab active" data-category="all">সব খবর</div>
@@ -1093,23 +1184,23 @@
             <div class="category-tab" data-category="tech">প্রযুক্তি</div>
             <div class="category-tab" data-category="international">আন্তর্জাতিক</div>
         </div>
-
+        
         <!-- Loading Spinner -->
         <div class="loading" id="loadingSpinner">
             <div class="spinner"></div>
             <p>লোড হচ্ছে...</p>
         </div>
-
+        
         <!-- News Grid -->
         <div class="news-grid" id="newsGrid">
             <!-- News items will be dynamically loaded here -->
         </div>
-
+        
         <!-- Ad Section -->
         <div class="ad-section" id="homeAdBottom">
-            <iframe class="ad-iframe" id="adBottomIframe" srcdoc="<div style='display:flex;justify-content:center;align-items:center;height:100%;color:#999;'>বিজ্ঞাপন লোড হচ্ছে...</div>"></iframe>
+            <div class="ad-container" id="adBottomContainer"></div>
         </div>
-
+        
         <!-- Trending Topics Section -->
         <section class="trending-topics">
             <h3>ট্রেন্ডিং টপিকস</h3>
@@ -1125,7 +1216,7 @@
             </div>
         </section>
     </main>
-
+    
     <!-- Footer -->
     <footer>
         <div class="footer-container">
@@ -1166,20 +1257,13 @@
                     <p><i class="fas fa-phone"></i> <span id="contactPhone">+৮৮০১৭১২৩৪৫৬৭৮</span></p>
                     <p><i class="fas fa-envelope"></i> <span id="contactEmail">info@therealnews.com</span></p>
                 </div>
-                <div class="github-support">
-                    <h5>GitHub সাপোর্ট</h5>
-                    <p>এই ওয়েবসাইটটি GitHub পেজেস এ হোস্ট করা হয়েছে</p>
-                    <a href="https://github.com" target="_blank">
-                        <i class="fab fa-github"></i> GitHub এ ভিজিট করুন
-                    </a>
-                </div>
             </div>
         </div>
         <div class="copyright">
             <p>&copy; ২০২৫ The Real News। সর্বস্বত্ব সংরক্ষিত।</p>
         </div>
     </footer>
-
+    
     <!-- News Detail Modal -->
     <div class="news-modal" id="newsModal">
         <div class="modal-container">
@@ -1197,21 +1281,50 @@
                 <div class="modal-body" id="modalBody"></div>
                 
                 <!-- Ad Section in News Content -->
-                <div class="modal-ad ad-large" id="newsContentAd">
-                    <iframe class="ad-iframe" id="adContentIframe" srcdoc="<div style='display:flex;justify-content:center;align-items:center;height:100%;color:#999;'>বিজ্ঞাপন লোড হচ্ছে...</div>"></iframe>
+                <div class="ad-section ad-large" id="newsContentAd">
+                    <div class="ad-container" id="adContentContainer"></div>
+                </div>
+                
+                <div class="modal-actions">
+                    <button class="modal-action-btn" id="saveArticleBtn">
+                        <i class="far fa-bookmark"></i> সংরক্ষণ করুন
+                    </button>
+                    <div class="modal-share">
+                        <button class="modal-action-btn" id="printArticleBtn">
+                            <i class="fas fa-print"></i> প্রিন্ট করুন
+                        </button>
+                        <button class="modal-action-btn" id="shareArticleBtn">
+                            <i class="fas fa-share-alt"></i> শেয়ার করুন
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-
+    
+    <!-- Saved Articles Panel -->
+    <div class="saved-articles" id="savedArticlesPanel">
+        <div class="saved-articles-header">
+            <h3 class="saved-articles-title">সংরক্ষিত প্রবন্ধ</h3>
+            <button class="close-saved" id="closeSavedPanel">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <div id="savedArticlesList">
+            <div class="saved-articles-empty">
+                <p>কোনো প্রবন্ধ সংরক্ষণ করা হয়নি</p>
+            </div>
+        </div>
+    </div>
+    
     <!-- Back to Top Button -->
     <div class="back-to-top" id="backToTop">
         <i class="fas fa-arrow-up"></i>
     </div>
-
+    
     <!-- Notification -->
     <div class="notification" id="notification"></div>
-
+    
     <script>
         // Initialize Firebase
         const firebaseConfig = {
@@ -1255,13 +1368,23 @@
         const instagramLink = document.getElementById('instagramLink');
         const youtubeLink = document.getElementById('youtubeLink');
         const visitorCount = document.getElementById('visitorCount');
-        const weatherIcon = document.getElementById('weatherIcon');
-        const weatherLocation = document.getElementById('weatherLocation');
-        const weatherCondition = document.getElementById('weatherCondition');
-        const weatherTemp = document.getElementById('weatherTemp');
+        const fontDecrease = document.getElementById('fontDecrease');
+        const fontIncrease = document.getElementById('fontIncrease');
+        const saveArticleBtn = document.getElementById('saveArticleBtn');
+        const printArticleBtn = document.getElementById('printArticleBtn');
+        const shareArticleBtn = document.getElementById('shareArticleBtn');
+        const savedArticlesPanel = document.getElementById('savedArticlesPanel');
+        const closeSavedPanel = document.getElementById('closeSavedPanel');
+        const savedArticlesList = document.getElementById('savedArticlesList');
         
         // Current category filter
         let currentCategory = 'all';
+        let currentNewsItem = null;
+        let savedArticles = JSON.parse(localStorage.getItem('savedArticles')) || [];
+        let fontSize = parseInt(localStorage.getItem('fontSize')) || 16;
+        
+        // Apply saved font size
+        document.documentElement.style.fontSize = fontSize + 'px';
         
         // Show notification
         function showNotification(message, duration = 3000) {
@@ -1321,6 +1444,23 @@
             document.body.classList.add('dark-mode');
             themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
         }
+        
+        // Font size adjuster
+        fontDecrease.addEventListener('click', () => {
+            if (fontSize > 14) {
+                fontSize -= 1;
+                document.documentElement.style.fontSize = fontSize + 'px';
+                localStorage.setItem('fontSize', fontSize);
+            }
+        });
+        
+        fontIncrease.addEventListener('click', () => {
+            if (fontSize < 20) {
+                fontSize += 1;
+                document.documentElement.style.fontSize = fontSize + 'px';
+                localStorage.setItem('fontSize', fontSize);
+            }
+        });
         
         // Back to top functionality
         window.addEventListener('scroll', () => {
@@ -1382,10 +1522,11 @@
             loadingSpinner.style.display = 'block';
             newsGrid.innerHTML = '';
             
-            let newsRef = database.ref('news').orderByChild('timestamp');
-            
-            if (currentCategory !== 'all') {
-                newsRef = newsRef.equalTo(currentCategory).child('category');
+            let newsRef;
+            if (currentCategory === 'all') {
+                newsRef = database.ref('news').orderByChild('timestamp');
+            } else {
+                newsRef = database.ref('news').orderByChild('category').equalTo(currentCategory);
             }
             
             newsRef.once('value')
@@ -1477,6 +1618,7 @@
             card.setAttribute('data-id', newsItem.id);
             
             const timeAgo = getTimeAgo(new Date(newsItem.timestamp));
+            const isSaved = savedArticles.some(article => article.id === newsItem.id);
             
             card.innerHTML = `
                 <img src="${newsItem.image}" alt="${newsItem.title}">
@@ -1488,12 +1630,26 @@
                         <span><i class="far fa-clock"></i> ${timeAgo}</span>
                         <span><i class="far fa-user"></i> ${newsItem.author}</span>
                     </div>
+                    <div class="news-actions">
+                        <button class="news-action-btn save-btn ${isSaved ? 'saved' : ''}" data-id="${newsItem.id}">
+                            <i class="${isSaved ? 'fas' : 'far'} fa-bookmark"></i> ${isSaved ? 'সংরক্ষিত' : 'সংরক্ষণ করুন'}
+                        </button>
+                    </div>
                 </div>
             `;
             
             // Add click event to show news detail
-            card.addEventListener('click', () => {
-                showNewsDetail(newsItem);
+            card.addEventListener('click', (e) => {
+                if (!e.target.closest('.save-btn')) {
+                    showNewsDetail(newsItem);
+                }
+            });
+            
+            // Add save button event
+            const saveBtn = card.querySelector('.save-btn');
+            saveBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                toggleSaveArticle(newsItem);
             });
             
             return card;
@@ -1501,12 +1657,18 @@
         
         // Show news detail in modal
         function showNewsDetail(newsItem) {
+            currentNewsItem = newsItem;
             modalImage.src = newsItem.image;
             modalCategory.textContent = getCategoryName(newsItem.category);
             modalTitle.textContent = newsItem.title;
             modalAuthor.innerHTML = `<i class="far fa-user"></i> ${newsItem.author}`;
             modalDate.innerHTML = `<i class="far fa-clock"></i> ${formatDate(new Date(newsItem.timestamp))}`;
             modalBody.innerHTML = newsItem.content;
+            
+            // Update save button state
+            const isSaved = savedArticles.some(article => article.id === newsItem.id);
+            saveArticleBtn.innerHTML = `<i class="${isSaved ? 'fas' : 'far'} fa-bookmark"></i> ${isSaved ? 'সংরক্ষিত' : 'সংরক্ষণ করুন'}`;
+            saveArticleBtn.classList.toggle('saved', isSaved);
             
             newsModal.style.display = 'block';
             document.body.style.overflow = 'hidden';
@@ -1527,6 +1689,141 @@
                 newsModal.style.display = 'none';
                 document.body.style.overflow = 'auto';
             }
+        });
+        
+        // Save article functionality
+        saveArticleBtn.addEventListener('click', () => {
+            if (currentNewsItem) {
+                toggleSaveArticle(currentNewsItem);
+                
+                // Update button state
+                const isSaved = savedArticles.some(article => article.id === currentNewsItem.id);
+                saveArticleBtn.innerHTML = `<i class="${isSaved ? 'fas' : 'far'} fa-bookmark"></i> ${isSaved ? 'সংরক্ষিত' : 'সংরক্ষণ করুন'}`;
+                saveArticleBtn.classList.toggle('saved', isSaved);
+            }
+        });
+        
+        // Toggle save article
+        function toggleSaveArticle(newsItem) {
+            const existingIndex = savedArticles.findIndex(article => article.id === newsItem.id);
+            
+            if (existingIndex !== -1) {
+                // Remove from saved articles
+                savedArticles.splice(existingIndex, 1);
+                showNotification('প্রবন্ধটি সংরক্ষণ তালিকা থেকে সরানো হয়েছে');
+            } else {
+                // Add to saved articles
+                savedArticles.push({
+                    id: newsItem.id,
+                    title: newsItem.title,
+                    excerpt: newsItem.excerpt,
+                    image: newsItem.image,
+                    category: newsItem.category,
+                    author: newsItem.author,
+                    timestamp: newsItem.timestamp
+                });
+                showNotification('প্রবন্ধটি সংরক্ষণ করা হয়েছে');
+            }
+            
+            // Update localStorage
+            localStorage.setItem('savedArticles', JSON.stringify(savedArticles));
+            
+            // Update saved articles panel if open
+            if (savedArticlesPanel.classList.contains('show')) {
+                renderSavedArticles();
+            }
+            
+            // Update save button in news grid
+            const saveBtn = document.querySelector(`.save-btn[data-id="${newsItem.id}"]`);
+            if (saveBtn) {
+                saveBtn.classList.toggle('saved', existingIndex === -1);
+                saveBtn.innerHTML = `<i class="${existingIndex === -1 ? 'fas' : 'far'} fa-bookmark"></i> ${existingIndex === -1 ? 'সংরক্ষিত' : 'সংরক্ষণ করুন'}`;
+            }
+        }
+        
+        // Print article functionality
+        printArticleBtn.addEventListener('click', () => {
+            window.print();
+        });
+        
+        // Share article functionality
+        shareArticleBtn.addEventListener('click', () => {
+            if (navigator.share) {
+                navigator.share({
+                    title: currentNewsItem.title,
+                    text: currentNewsItem.excerpt,
+                    url: window.location.href
+                })
+                .then(() => showNotification('সফলভাবে শেয়ার করা হয়েছে'))
+                .catch(error => console.log('Sharing failed:', error));
+            } else {
+                // Fallback for browsers that don't support Web Share API
+                const dummy = document.createElement('input');
+                document.body.appendChild(dummy);
+                dummy.value = window.location.href;
+                dummy.select();
+                document.execCommand('copy');
+                document.body.removeChild(dummy);
+                showNotification('লিংক ক্লিপবোর্ডে কপি করা হয়েছে');
+            }
+        });
+        
+        // Saved articles panel
+        function renderSavedArticles() {
+            if (savedArticles.length === 0) {
+                savedArticlesList.innerHTML = `
+                    <div class="saved-articles-empty">
+                        <p>কোনো প্রবন্ধ সংরক্ষণ করা হয়নি</p>
+                    </div>
+                `;
+            } else {
+                savedArticlesList.innerHTML = '';
+                
+                savedArticles.forEach(article => {
+                    const articleItem = document.createElement('div');
+                    articleItem.className = 'saved-article-item';
+                    
+                    articleItem.innerHTML = `
+                        <img src="${article.image}" alt="${article.title}">
+                        <div class="saved-article-content">
+                            <div class="saved-article-title">${article.title}</div>
+                            <div class="saved-article-meta">
+                                <span><i class="far fa-clock"></i> ${getTimeAgo(new Date(article.timestamp))}</span>
+                                <span><i class="far fa-user"></i> ${article.author}</span>
+                            </div>
+                        </div>
+                    `;
+                    
+                    articleItem.addEventListener('click', () => {
+                        // Fetch full article data from Firebase
+                        database.ref(`news/${article.id}`).once('value')
+                            .then(snapshot => {
+                                if (snapshot.exists()) {
+                                    const fullArticle = snapshot.val();
+                                    fullArticle.id = article.id;
+                                    showNewsDetail(fullArticle);
+                                    savedArticlesPanel.classList.remove('show');
+                                }
+                            })
+                            .catch(error => {
+                                showNotification('প্রবন্ধ লোড করতে ত্রুটি: ' + error.message);
+                            });
+                    });
+                    
+                    savedArticlesList.appendChild(articleItem);
+                });
+            }
+        }
+        
+        // Open saved articles panel
+        function openSavedArticles() {
+            renderSavedArticles();
+            savedArticlesPanel.classList.add('show');
+        }
+        
+        // Close saved articles panel
+        closeSavedPanel.addEventListener('click', () => {
+            savedArticlesPanel.classList.remove('show');
         });
         
         // Load featured news
@@ -1620,8 +1917,8 @@
         // Load specific ad
         function loadAd(adId) {
             const adElement = document.getElementById(adId);
-            const iframeId = adId.replace('homeAd', 'ad').replace('newsContentAd', 'adContent') + 'Iframe';
-            const iframe = document.getElementById(iframeId);
+            const containerId = adId.replace('homeAd', 'ad').replace('newsContentAd', 'adContent') + 'Container';
+            const container = document.getElementById(containerId);
             
             database.ref(`ads/${adId}`).once('value')
                 .then(snapshot => {
@@ -1629,40 +1926,21 @@
                         const adData = snapshot.val();
                         
                         if (adData.active && adData.code) {
-                            // Check if it's a URL
-                            if (adData.code.startsWith('http') || adData.code.startsWith('//')) {
-                                iframe.src = adData.code;
-                            } else {
-                                // Wrap in HTML if it's not a full HTML document
-                                if (!adData.code.includes('<html')) {
-                                    const wrappedHtml = `
-                                        <!DOCTYPE html>
-                                        <html>
-                                        <head>
-                                            <style>
-                                                body, html { margin: 0; padding: 0; width: 100%; height: 100%; overflow: hidden; }
-                                            </style>
-                                        </head>
-                                        <body>
-                                            ${adData.code}
-                                        </body>
-                                        </html>
-                                    `;
-                                    iframe.srcdoc = wrappedHtml;
-                                } else {
-                                    iframe.srcdoc = adData.code;
-                                }
-                            }
+                            // Set the ad code directly
+                            container.innerHTML = adData.code;
+                            adElement.style.display = 'flex';
                         } else {
-                            iframe.srcdoc = "<div style='display:flex;justify-content:center;align-items:center;height:100%;color:#999;'>বিজ্ঞাপন এখানে দেখানো হবে</div>";
+                            // Hide the ad section if no active ad
+                            adElement.style.display = 'none';
                         }
                     } else {
-                        iframe.srcdoc = "<div style='display:flex;justify-content:center;align-items:center;height:100%;color:#999;'>বিজ্ঞাপন এখানে দেখানো হবে</div>";
+                        // Hide the ad section if no ad data
+                        adElement.style.display = 'none';
                     }
                 })
                 .catch(error => {
                     console.error(`Error loading ad ${adId}:`, error);
-                    iframe.srcdoc = "<div style='display:flex;justify-content:center;align-items:center;height:100%;color:#999;'>বিজ্ঞাপন লোড করতে ত্রুটি</div>";
+                    adElement.style.display = 'none';
                 });
         }
         
@@ -1805,31 +2083,6 @@
             }, 30000);
         }
         
-        // Update weather widget
-        function updateWeatherWidget() {
-            // Simulate weather data
-            const weatherConditions = [
-                { condition: 'আংশিক মেঘলা', icon: 'fas fa-cloud-sun', temp: '28°C' },
-                { condition: 'পরিষ্কার আকাশ', icon: 'fas fa-sun', temp: '32°C' },
-                { condition: 'মেঘলা', icon: 'fas fa-cloud', temp: '26°C' },
-                { condition: 'বৃষ্টি', icon: 'fas fa-cloud-rain', temp: '24°C' }
-            ];
-            
-            const randomWeather = weatherConditions[Math.floor(Math.random() * weatherConditions.length)];
-            
-            weatherIcon.className = randomWeather.icon;
-            weatherCondition.textContent = randomWeather.condition;
-            weatherTemp.textContent = randomWeather.temp;
-            
-            // Update every hour
-            setInterval(() => {
-                const newRandomWeather = weatherConditions[Math.floor(Math.random() * weatherConditions.length)];
-                weatherIcon.className = newRandomWeather.icon;
-                weatherCondition.textContent = newRandomWeather.condition;
-                weatherTemp.textContent = newRandomWeather.temp;
-            }, 3600000);
-        }
-        
         // Get category name in Bengali
         function getCategoryName(category) {
             const categories = {
@@ -1871,6 +2124,17 @@
             return date.toLocaleDateString('bn-BD', options);
         }
         
+        // Add saved articles button to header
+        function addSavedArticlesButton() {
+            const savedBtn = document.createElement('button');
+            savedBtn.className = 'theme-toggle';
+            savedBtn.innerHTML = '<i class="fas fa-bookmark"></i>';
+            savedBtn.title = 'সংরক্ষিত প্রবন্ধ';
+            savedBtn.addEventListener('click', openSavedArticles);
+            
+            document.querySelector('.header-actions').insertBefore(savedBtn, document.querySelector('.theme-toggle'));
+        }
+        
         // Initialize the page
         document.addEventListener('DOMContentLoaded', () => {
             loadNews();
@@ -1881,7 +2145,7 @@
             loadBreakingNews();
             loadCustomizationSettings();
             updateVisitorCounter();
-            updateWeatherWidget();
+            addSavedArticlesButton();
         });
     </script>
 </body>
